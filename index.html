@@ -535,45 +535,76 @@
       margin-bottom: 0.5rem;
       font-family: "Playfair Display", serif;
     }
-/* --- Dzień drugi (ulepszona wersja) --- */
+/* --- Dzień drugi (dopieszczona wersja) --- */
 
 .second-day {
   max-width: 500px;
-  margin: 0 auto 3rem;
-  padding: 1.8rem 1.6rem;
+  margin: 0 auto 2.5rem;
+  padding: 1.4rem 1.2rem;
 
-  /* Premium ramka */
-  border: 2px solid rgba(180, 180, 180, 0.35);
+  border: 2px solid rgba(180, 180, 180, 0.32);
   border-radius: 14px;
-
-  /* Delikatny cień */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-
   background: #fff;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 .second-day h3 {
-  font-size: 0.85rem;
-  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+  margin-bottom: 0.3rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #555;
+  color: #666;
 }
 
 .second-day-title {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   font-family: "Playfair Display", serif;
   color: #333;
 }
 
 .second-day p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 0.5rem;
   color: #444;
 }
+
+/* Przyciski lokalizacji */
+.second-day a {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #444;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+  transition: 0.2s ease;
+}
+
+.second-day a:hover {
+  opacity: 1;
+}
+
+/* --- Desktop --- */
+@media (min-width: 769px) {
+  .second-day {
+    padding: 1.8rem 1.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .second-day-title {
+    font-size: 1.15rem;
+  }
+
+  .second-day p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
 
     /* RSVP */
     .rsvp-wrapper {

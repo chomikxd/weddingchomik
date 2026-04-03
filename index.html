@@ -990,81 +990,82 @@
           </div>
 
           <!-- Netlify Forms -->
-          <form name="rsvp" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="rsvp" />
-            <input type="hidden" name="timestamp" id="timestamp" />
+<form action="https://formsubmit.co/daniel.domagala.93@gmail.com" method="POST" class="rsvp-form">
 
-            <div class="form-group">
-              <label for="name">Imię i nazwisko *</label>
-              <input type="text" id="name" name="name" required />
-            </div>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="https://chomikxd.github.io/weddingchomik/thankyou.html">
 
-            <div class="form-group">
-              <label>Czy będziesz obecny na weselu? *</label>
-              <div class="radio-group">
-                <label class="radio-option">
-                  <input type="radio" name="obecnosc" value="Tak" required />
-                  <span>Tak</span>
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="obecnosc" value="Nie" />
-                  <span>Nie</span>
-                </label>
-              </div>
-            </div>
+  <div class="form-group">
+    <label for="name">Imię i nazwisko *</label>
+    <input type="text" id="name" name="Imię i nazwisko" required />
+  </div>
 
-            <div class="rsvp-extra" id="rsvpExtra">
-              <div class="form-group">
-                <label for="liczba_osob">Ile osób będzie łącznie?</label>
-                <input type="number" id="liczba_osob" name="liczba_osob" min="1" />
-              </div>
+  <div class="form-group">
+    <label>Czy będziesz obecny na weselu? *</label>
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" name="Obecność" value="Tak" required />
+        <span>Tak</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="Obecność" value="Nie" />
+        <span>Nie</span>
+      </label>
+    </div>
+  </div>
 
-              <div class="form-group">
-                <label>Czy potrzebny jest nocleg?</label>
-                <div class="radio-group">
-                  <label class="radio-option">
-                    <input type="radio" name="nocleg" value="Tak" />
-                    <span>Tak</span>
-                  </label>
-                  <label class="radio-option">
-                    <input type="radio" name="nocleg" value="Nie" />
-                    <span>Nie</span>
-                  </label>
-                </div>
-              </div>
+  <div class="form-group">
+    <label for="liczba_osob">Ile osób będzie łącznie?</label>
+    <input type="number" id="liczba_osob" name="Liczba osób" min="1" />
+  </div>
 
-              <div class="form-group">
-                <label for="liczba_nocleg">Jeśli tak — ile osób z noclegiem?</label>
-                <input type="number" id="liczba_nocleg" name="liczba_nocleg" min="1" />
-              </div>
+  <div class="form-group">
+    <label for="nocleg">Czy potrzebny jest nocleg?</label>
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" name="Nocleg" value="Tak" />
+        <span>Tak</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="Nocleg" value="Nie" />
+        <span>Nie</span>
+      </label>
+    </div>
+  </div>
 
-              <div class="form-group">
-                <label>Czy będziecie na poprawinach?</label>
-                <div class="radio-group">
-                  <label class="radio-option">
-                    <input type="radio" name="poprawiny" value="Tak" />
-                    <span>Tak</span>
-                  </label>
-                  <label class="radio-option">
-                    <input type="radio" name="poprawiny" value="Nie" />
-                    <span>Nie</span>
-                  </label>
-                </div>
-              </div>
+  <div class="form-group">
+    <label for="liczba_nocleg">Jeśli tak — ile osób z noclegiem?</label>
+    <input type="number" id="liczba_nocleg" name="Liczba noclegów" min="1" />
+  </div>
 
-              <div class="form-group">
-                <label for="liczba_poprawiny">Jeśli tak — ile osób na poprawinach?</label>
-                <input type="number" id="liczba_poprawiny" name="liczba_poprawiny" min="1" />
-              </div>
-            </div>
+  <div class="form-group">
+    <label for="poprawiny">Czy będziecie na poprawinach?</label>
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" name="Poprawiny" value="Tak" />
+        <span>Tak</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="Poprawiny" value="Nie" />
+        <span>Nie</span>
+      </label>
+    </div>
+  </div>
 
-            <div class="form-group">
-              <label for="info">Dodatkowe informacje<br />Alergie, preferencje żywieniowe, uwagi</label>
-              <textarea id="info" name="informacje"></textarea>
-            </div>
+  <div class="form-group">
+    <label for="liczba_poprawiny">Jeśli tak — ile osób na poprawinach?</label>
+    <input type="number" id="liczba_poprawiny" name="Liczba poprawiny" min="1" />
+  </div>
 
-            <button type="submit" class="btn-submit">Potwierdzam obecność</button>
-          </form>
+  <div class="form-group">
+    <label for="info">Dodatkowe informacje<br>Alergie, preferencje żywieniowe, uwagi</label>
+    <textarea id="info" name="Uwagi"></textarea>
+  </div>
+
+  <button type="submit" class="btn-submit">Potwierdzam obecność</button>
+</form>
+
 
           <div class="rsvp-footer">
             Agata i Daniel — 5 września 2026<br />

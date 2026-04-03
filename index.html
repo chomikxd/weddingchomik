@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agata i Daniel — Ślub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonty: Playfair Display, Lora, Great Vibes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Lora:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f0ea;
+      --text: #222222;
+      --accent: #c0c4cc;
+      --accent-strong: #9ea3ad;
+      --accent-dark: #7b808a;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: -1px;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Lora", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    /* Sticky nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(245, 240, 234, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-names {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.1rem;
+    }
+
+    .brand-sub {
+      font-size: 0.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #bec2ca;
+    }
+
+    .rings-icon {
+      position: relative;
+      width: 26px;
+      height: 18px;
+    }
+
+    .ring {
+      position: absolute;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      border: 1px solid #bdc1c9;
+      box-shadow: 0 0 1px rgba(189, 194, 202);
+    }
+
+    .ring.left {
+      left: 0;
+      top: 0;
+    }
+
+    .ring.right {
+      right: 1px;
+      top: -4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: var(--accent-strong);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: #333;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(245, 240, 234, 0.98);
+        flex-direction: column;
+        padding: 0.75rem 1.5rem;
+        border-bottom-left-radius: 8px;
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("images/hero.jpg"); /* zdjęcie */
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      transform: scale(1.05);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .hero-names {
+      font-family: "Great Vibes", cursive;
+      font-size: 3.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-date {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 10.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .countdown-item {
+      min-width: 70px;
+    }
+
+    .countdown-number {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(0, 0, 0, 0%);
+      color: #ffffff;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background: rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Section header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Ornament separator (nowy, mniej świąteczny) */
+    .section-separator {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+
+    .section-separator span {
+      display: inline-block;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c0c4cc, transparent);
+    }
+
+
+    /* Nasza historia */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .story-text {
+      font-size: 0.9rem;
+    }
+
+    .story-images {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+  .story-placeholder {
+      background: linear-gradient(135deg, #e3e5ea, #f7f8fa);
+      border-radius: 12px;
+      aspect-ratio: 3 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border: 1px solid rgba(192, 196, 204, 0.7);
+    }
+
+    @media (max-width: 768px) {
+      .story-grid {
+        gap: 1.5rem;
+      }
+    }
+
+    /* Informacje */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+      font-size: 0.9rem;
+      border: 1px solid rgba(192, 196, 204, 0.6);
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      font-family: "Playfair Display", serif;
+    }
+
+    .info-date {
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .info-address {
+      margin-bottom: 0.75rem;
+    }
+
+    .info-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Harmonogram */
+    .timeline {
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.5rem;
+      top: 0.35rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff, #c0c4cc);
+      box-shadow: 0 0 6px rgba(192, 196, 204, 0.9);
+    }
+
+    .timeline-time {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-label {
+      font-size: 0.9rem;
+    }
+
+    .second-day {
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .second-day h3 {
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .second-day-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-family: "Playfair Display", serif;
+    }
+
+    /* RSVP */
+    .rsvp-wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 2rem 1.75rem 2.25rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(192, 196, 204, 0.7);
+    }
+
+    .rsvp-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .rsvp-header h2 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .rsvp-header p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .rsvp-header strong {
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: #faf7f3;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-submit {
+      display: inline-block;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #c0c4cc, #9ea3ad);
+      color: #ffffff;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #d0d4dd, #7b808a);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .rsvp-footer {
+      margin-top: 1.75rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .rsvp-extra {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(192, 196, 204, 0.8);
+      display: none;
+    }
+
+    .rsvp-extra.visible {
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 1.5rem 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animacje głównych napisów (styl B) */
+    @keyframes heroFadeSlideScale {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hero-anim {
+      opacity: 0;
+      animation: heroFadeSlideScale 0.9s ease forwards;
+    }
+
+    .hero-anim-1 {
+      animation-delay: 0.1s;
+    }
+
+    .hero-anim-2 {
+      animation-delay: 0.3s;
+    }
+
+    .hero-anim-3 {
+      animation-delay: 0.5s;
+    }
+
+    .hero-anim-4 {
+      animation-delay: 0.7s;
+    }
+
+    .hero-anim-5 {
+      animation-delay: 0.9s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Nawigacja -->
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="rings-icon">
+          <div class="ring left"></div>
+          <div class="ring right"></div>
+        </div>
+        <div class="nav-brand">
+          <div class="brand-names">Agata i Daniel</div>
+          <div class="brand-sub">5 września 2026</div>
+        </div>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#start">Start</a>
+        <a href="#historia">Nasza historia</a>
+        <a href="#informacje">Informacje</a>
+        <a href="#harmonogram">Harmonogram</a>
+        <a href="#dzien-drugi">Dzień drugi</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main id="start">
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-title hero-anim hero-anim-1">Zapraszamy na nasz ślub</div>
+        <div class="hero-names hero-anim hero-anim-2">Agata i Daniel</div>
+        <div class="hero-date hero-anim hero-anim-3">5 września 2026</div>
+
+        <div class="countdown hero-anim hero-anim-4" id="countdown">
+          <div class="countdown-item">
+            <div class="countdown-number" id="days">0</div>
+            <div>Dni</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="hours">0</div>
+            <div>Godz</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="minutes">0</div>
+            <div>Min</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="seconds">0</div>
+            <div>Sek</div>
+          </div>
+        
+	     <div class="<p></p> </div>	  
+		</div>
+        <div class="hero-anim hero-anim-5">
+          <button id="saveDateBtn" class="btn-primary">Zapisz datę</button>
+        </div>
+		
+    </section>
+
+    <div class="section-separator"><span></span></div>
+
+
+    <!-- Nasza historia -->
+    <section id="historia">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Nasza historia</h2>
+          <p>Kilka słów o nas i o tym, jak to się zaczęło</p>
+        </div>
+
+        <div class="story-grid reveal">
+		  <div class="story-images">
+            <div class="story-placeholder">Zdjęcie 1</div><div class="story-placeholder">Zdjęcie 2</div>
+          </div>
+          <div class="story-text">
+            <p>Poznaliśmy się w grudniu 2016 roku, dokładnie w dniu urodzin Daniela.Idealny moment, żeby dostać najlepszy prezent w życiu — choć wtedy jeszcze żadne z nas nie miało pojęcia, że właśnie to się dzieje.</p>
+            <p>Od tamtej pory trzymamy się razem. W międzyczasie nauczyliśmy się ogarniać dorosłe życie (z różnym skutkiem), podejmować mniej lub bardziej rozsądne decyzje i wspólnie realizować pomysły, które zaskakująco często kończą się kolejną podróżą.</p>
+			<p>Po latach wspólnego „testowania kompatybilności” w warunkach kryzysowych i codziennych, wynik jest na tyle stabilny, żeby pójść krok dalej. ;)</p>
+			<p>Dlatego postanowiliśmy kontynuować ten eksperyment na większą skalę, oficjalnie przejść na kolejny poziom i zobaczyć, co wydarzy się dalej.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-separator"><span></span></div>
+
+
+    <!-- Informacje -->
+    <section id="informacje">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Informacje</h2>
+          <p>Najważniejsze miejsca i godziny</p>
+        </div>
+
+        <div class="info-grid reveal">
+          <div class="info-card">
+            <div class="info-label">Ceremonia</div>
+            <div class="info-title">Ślub kościelny</div>
+            <div class="info-date">5 września 2026 — godz. 15:00</div>
+            <div class="info-address">
+              Kościół Rzymskokatolicki św. Ap. Piotra i Pawła<br />
+              ul. Rychwalska 18<br />
+              62-571 Stare Miasto
+            </div>
+            <a href="https://maps.google.com/?q=Ko%C5%9Bci%C3%B3%C5%82+Rzymskokatolicki+%C5%9Bw.+Ap.+Piotra+i+Paw%C5%82a+Rychwalska+18+Stare+Miasto" class="info-link" target="_blank" rel="noopener">Zobacz lokalizację</a>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Przyjęcie</div>
+            <div class="info-title">Wesele</div>
+            <div class="info-date">5 września 2026 — od godz. 16:00</div>
+            <div class="info-address">
+              Skansen Bicz Family &amp; SPA — Sala Diamentowa<br />
+              Bicz
+            </div>
+            <a href="https://maps.google.com/?q=Skansen+Bicz+Family+%26+SPA+Sala+Diamentowa" class="info-link" target="_blank" rel="noopener">Zobacz lokalizację</a>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Dzień drugi</div>
+            <div class="info-title">Poprawiny</div>
+            <div class="info-date">6 września 2026 — 12:00–16:00</div>
+            <div class="info-address">
+              Skansen Bicz — Sala Stodoła<br />
+              Bicz
+            </div>
+            <a href="https://maps.google.com/?q=Skansen+Bicz+Sala+Stodo%C5%82a" class="info-link" target="_blank" rel="noopener">Zobacz lokalizację</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-separator"><span></span></div>
+
+
+    <!-- Harmonogram -->
+    <section id="harmonogram">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Harmonogram dnia</h2>
+          <p>Plan naszego wspólnego świętowania</p>
+        </div>
+
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <div class="timeline-time">15:00</div>
+            <div class="timeline-label">Ceremonia ślubna</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">16:00</div>
+            <div class="timeline-label">Rozpoczęcie przyjęcia weselnego</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">18:00</div>
+            <div class="timeline-label">Pierwszy taniec</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">00:00</div>
+            <div class="timeline-label">Tort</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">12:00 (następnego dnia)</div>
+            <div class="timeline-label">Poprawiny — Sala Stodoła</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-separator"><span></span></div>
+
+
+    <!-- Dzień drugi (opis) -->
+    <section id="dzien-drugi">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Dzień drugi</h2>
+          <p>Poprawiny</p>
+        </div>
+
+        <div class="second-day reveal">
+          <h3>Dzień drugi</h3>
+          <div class="second-day-title">Poprawiny</div>
+          <p>6 września 2026 — 12:00–16:00</p>
+          <p>Skansen Bicz — Sala Stodoła<br />Bicz</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-separator"><span></span></div>
+
+
+    <!-- RSVP -->
+    <section id="rsvp">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Daj nam znać, że będziesz</h2>
+          <p>Potwierdź swoją obecność, to bardzo nam pomoże</p>
+        </div>
+
+        <div class="rsvp-wrapper reveal">
+          <div class="rsvp-header">
+            <h2>Potwierdzenie obecności</h2>
+            <p>
+              Będzie nam ogromnie miło, jeśli potwierdzicie swoją obecność do
+              <strong>01.08.2026.</strong>
+            </p>
+          </div>
+
+          <!-- Netlify Forms -->
+          <form name="rsvp" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="rsvp" />
+            <input type="hidden" name="timestamp" id="timestamp" />
+
+            <div class="form-group">
+              <label for="name">Imię i nazwisko *</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label>Czy będziesz obecny na weselu? *</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="obecnosc" value="Tak" required />
+                  <span>Tak</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="obecnosc" value="Nie" />
+                  <span>Nie</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="rsvp-extra" id="rsvpExtra">
+              <div class="form-group">
+                <label for="liczba_osob">Ile osób będzie łącznie?</label>
+                <input type="number" id="liczba_osob" name="liczba_osob" min="1" />
+              </div>
+
+              <div class="form-group">
+                <label>Czy potrzebny jest nocleg?</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="nocleg" value="Tak" />
+                    <span>Tak</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="nocleg" value="Nie" />
+                    <span>Nie</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="liczba_nocleg">Jeśli tak — ile osób z noclegiem?</label>
+                <input type="number" id="liczba_nocleg" name="liczba_nocleg" min="1" />
+              </div>
+
+              <div class="form-group">
+                <label>Czy będziecie na poprawinach?</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="poprawiny" value="Tak" />
+                    <span>Tak</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="poprawiny" value="Nie" />
+                    <span>Nie</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="liczba_poprawiny">Jeśli tak — ile osób na poprawinach?</label>
+                <input type="number" id="liczba_poprawiny" name="liczba_poprawiny" min="1" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="info">Dodatkowe informacje<br />Alergie, preferencje żywieniowe, uwagi</label>
+              <textarea id="info" name="informacje"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Potwierdzam obecność</button>
+          </form>
+
+          <div class="rsvp-footer">
+            Agata i Daniel — 5 września 2026<br />
+            Do zobaczenia na naszym ślubie
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <!-- bez adresu netlify, jak chciałeś -->
+  </footer>
+
+  <script>
+    // Mobile nav
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    // Countdown
+    const targetDate = new Date("2026-09-05T15:00:00+02:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      if (distance <= 0) {
+        daysEl.textContent = "0";
+        hoursEl.textContent = "0";
+        minutesEl.textContent = "0";
+        secondsEl.textContent = "0";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    // Dynamic RSVP
+    const obecnoscRadios = document.querySelectorAll('input[name="obecnosc"]');
+    const rsvpExtra = document.getElementById("rsvpExtra");
+
+    obecnoscRadios.forEach((radio) => {
+      radio.addEventListener("change", () => {
+        if (radio.value === "Tak") {
+          rsvpExtra.classList.add("visible");
+        } else {
+          rsvpExtra.classList.remove("visible");
+        }
+      });
+    });
+
+    // Timestamp do Netlify / Excela
+    const tsInput = document.getElementById("timestamp");
+    if (tsInput) {
+      tsInput.value = new Date().toISOString();
+    }
+
+    // Zapisz datę -> generowanie pliku .ics
+    const saveDateBtn = document.getElementById("saveDateBtn");
+
+    saveDateBtn.addEventListener("click", () => {
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Agata i Daniel//Wedding//PL",
+        "BEGIN:VEVENT",
+        "UID:agata-daniel-20260905",
+        "DTSTAMP:20240101T120000Z",
+        "DTSTART:20260905T130000Z",
+        "DTEND:20260905T170000Z",
+        "SUMMARY:Ślub Agaty i Daniela",
+        "LOCATION:Kościół Rzymskokatolicki św. Ap. Piotra i Pawła, ul. Rychwalska 18, 62-571 Stare Miasto",
+        "DESCRIPTION:Ślub Agaty i Daniela",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "slub-agata-daniel.ics";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

@@ -959,6 +959,11 @@ footer {
     letter-spacing: 0.1em !important;
   }
 }
+.nested-extra {
+  display: none;
+  margin-top: 1rem;
+}
+
 
   </style>
 </head>
@@ -1136,17 +1141,18 @@ footer {
             <p>Będzie nam ogromnie miło, jeśli potwierdzicie swoją obecność do <strong>01.08.2026.</strong></p>
           </div>
 
-          <form action="https://formsubmit.co/daniel.domagala.93@gmail.com" method="POST" class="rsvp-form">
+<form action="https://formsubmit.co/daniel.domagala.93@gmail.com" method="POST" class="rsvp-form">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_next" value="https://chomikxd.github.io/weddingchomik/thankyou.html">
 
-  <!-- ZAWSZE WIDOCZNE -->
+  <!-- Imię i nazwisko -->
   <div class="form-group">
     <label for="name">Imię i nazwisko *</label>
     <input type="text" id="name" name="Imię i nazwisko" required>
   </div>
 
+  <!-- Obecność -->
   <div class="form-group">
     <label>Czy będziesz obecny na weselu? *</label>
     <div class="radio-group">
@@ -1161,15 +1167,35 @@ footer {
     </div>
   </div>
 
-  <!-- CZĘŚĆ ROZWIJANA -->
+  <!-- Sekcja po zaznaczeniu "Tak" -->
   <div id="rsvpExtra" class="rsvp-extra">
+
+    <!-- Osoba towarzysząca -->
     <div class="form-group">
-      <label for="liczba_osob">Ile osób będzie łącznie?</label>
-      <input type="number" id="liczba_osob" name="Liczba osób" min="1">
+      <label>Czy będziesz z osobą towarzyszącą?</label>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="Osoba towarzysząca" value="Tak">
+          <span>Tak</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="Osoba towarzysząca" value="Nie">
+          <span>Nie</span>
+        </label>
+      </div>
     </div>
 
+    <!-- Imię osoby towarzyszącej -->
+    <div id="plusOneName" class="nested-extra">
+      <div class="form-group">
+        <label for="plus_one">Imię i nazwisko osoby towarzyszącej</label>
+        <input type="text" id="plus_one" name="Osoba towarzysząca — imię i nazwisko">
+      </div>
+    </div>
+
+    <!-- Nocleg -->
     <div class="form-group">
-      <label>Czy potrzebny jest nocleg?</label>
+      <label>Czy potrzebujesz noclegu?</label>
       <div class="radio-group">
         <label class="radio-option">
           <input type="radio" name="Nocleg" value="Tak">
@@ -1182,38 +1208,34 @@ footer {
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="liczba_nocleg">Jeśli tak — ile osób z noclegiem?</label>
-      <input type="number" id="liczba_nocleg" name="Liczba noclegów" min="1">
-    </div>
-
-    <div class="form-group">
-      <label>Czy będziecie na poprawinach?</label>
-      <div class="radio-group">
-        <label class="radio-option">
-          <input type="radio" name="Poprawiny" value="Tak">
-          <span>Tak</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="Poprawiny" value="Nie">
-          <span>Nie</span>
-        </label>
+    <!-- Poprawiny -->
+    <div id="afterParty" class="nested-extra">
+      <div class="form-group">
+        <label>Czy zostajesz na poprawinach?</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="Poprawiny" value="Tak">
+            <span>Tak</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="Poprawiny" value="Nie">
+            <span>Nie</span>
+          </label>
+        </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="liczba_poprawiny">Jeśli tak — ile osób na poprawinach?</label>
-      <input type="number" id="liczba_poprawiny" name="Liczba poprawiny" min="1">
-    </div>
+  </div>
 
-    <div class="form-group">
-      <label for="info">Dodatkowe informacje<br>Alergie, preferencje żywieniowe, uwagi</label>
-      <textarea id="info" name="Uwagi"></textarea>
-    </div>
+  <!-- Dodatkowe informacje -->
+  <div class="form-group">
+    <label for="info">Dodatkowe informacje<br>Alergie, preferencje żywieniowe, uwagi</label>
+    <textarea id="info" name="Uwagi"></textarea>
   </div>
 
   <button type="submit" class="btn-submit">Potwierdzam obecność</button>
 </form>
+
 
 
           <div class="rsvp-footer">
@@ -1298,26 +1320,41 @@ footer {
   revealElements.forEach((el) => observer.observe(el));
 
   // Dynamic RSVP (POPRAWIONA WERSJA)
-  const obecnoscRadios = document.querySelectorAll('input[name="Obecność"]');
-  const rsvpExtra = document.getElementById("rsvpExtra");
+const obecnoscRadios = document.querySelectorAll('input[name="Obecność"]');
+const plusOneRadios = document.querySelectorAll('input[name="Osoba towarzysząca"]');
+const noclegRadios = document.querySelectorAll('input[name="Nocleg"]');
 
-  if (obecnoscRadios.length && rsvpExtra) {
-    obecnoscRadios.forEach((radio) => {
-      radio.addEventListener("change", () => {
-        if (radio.value === "Tak" && radio.checked) {
-          rsvpExtra.classList.add("visible");
-        } else {
-          rsvpExtra.classList.remove("visible");
+const rsvpExtra = document.getElementById("rsvpExtra");
+const plusOneName = document.getElementById("plusOneName");
+const afterParty = document.getElementById("afterParty");
 
-          // Czyścimy pola po ukryciu
-          rsvpExtra.querySelectorAll("input, textarea").forEach((el) => {
-            if (el.type === "radio") el.checked = false;
-            else el.value = "";
-          });
-        }
-      });
-    });
-  }
+// Obecność
+obecnoscRadios.forEach(radio => {
+  radio.addEventListener("change", () => {
+    if (radio.value === "Tak") {
+      rsvpExtra.style.display = "block";
+    } else {
+      rsvpExtra.style.display = "none";
+      plusOneName.style.display = "none";
+      afterParty.style.display = "none";
+    }
+  });
+});
+
+// Osoba towarzysząca
+plusOneRadios.forEach(radio => {
+  radio.addEventListener("change", () => {
+    plusOneName.style.display = radio.value === "Tak" ? "block" : "none";
+  });
+});
+
+// Nocleg
+noclegRadios.forEach(radio => {
+  radio.addEventListener("change", () => {
+    afterParty.style.display = radio.value === "Tak" ? "block" : "none";
+  });
+});
+
 
   // Zapisz datę -> generowanie pliku .ics
   const saveDateBtn = document.getElementById("saveDateBtn");

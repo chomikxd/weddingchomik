@@ -807,7 +807,30 @@ footer {
     margin-top: 0.5rem !important;
   }
 }
+/* =========================================
+   MOBILE — ZMNIEJSZONE ODSTĘPY W ZEGARZE
+========================================= */
 
+@media (max-width: 768px) {
+
+  .countdown {
+    gap: 0.8rem !important;        /* było ~1.5rem */
+  }
+
+  .countdown-item {
+    min-width: 55px !important;    /* było 70px */
+  }
+
+  .countdown-number {
+    font-size: 1.2rem !important;  /* delikatnie mniejsze */
+    margin-bottom: 0.15rem !important;
+  }
+
+  .countdown-item div:last-child {
+    font-size: 0.55rem !important; /* podpisy: dni/godz/min/sek */
+    letter-spacing: 0.1em !important;
+  }
+}
 
   </style>
 </head>

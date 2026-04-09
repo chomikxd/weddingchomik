@@ -965,6 +965,24 @@ footer {
 }
 
 
+
+.rsvp-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.rsvp-icon svg {
+  transition: transform 0.4s ease;
+}
+
+.rsvp-icon:hover svg {
+  transform: translateY(-3px);
+}
+
+
+
   </style>
 </head>
 <body>
@@ -1052,9 +1070,9 @@ footer {
 
           <div class="story-text">
             <p>Poznaliśmy się w grudniu 2016 roku, dokładnie w dniu urodzin Daniela. Idealny moment, żeby dostać najlepszy prezent w życiu — choć wtedy jeszcze żadne z nas nie miało pojęcia, że właśnie to się dzieje.</p>
-            <p>Od tamtej pory trzymamy się razem. W międzyczasie nauczyliśmy się ogarniać dorosłe życie (z różnym skutkiem), podejmować mniej lub bardziej rozsądne decyzje i wspólnie realizować pomysły, które zaskakująco często kończą się kolejną podróżą.</p>
-            <p>Po latach wspólnego „testowania kompatybilności” w warunkach kryzysowych i codziennych, wynik jest na tyle stabilny, żeby pójść krok dalej. ;)</p>
-            <p>Dlatego postanowiliśmy kontynuować ten eksperyment na większą skalę, oficjalnie przejść na kolejny poziom i zobaczyć, co wydarzy się dalej.</p>
+            <p>Od tamtej pory trzymamy się razem. W międzyczasie uczyliśmy się ogarniać dorosłe życie (z różnym skutkiem), podejmować mniej lub bardziej rozsądne decyzje i wspólnie realizować pomysły, które zaskakująco często kończą się kolejną podróżą.</p>
+            <p>Po latach wspólnego „testowania kompatybilności” w warunkach kryzysowych i codziennych, wynik jest na tyle stabilny, by podjąć dalsze kroki. ;)</p>
+            <p>Dlatego postanowiliśmy kontynuować ten eksperyment na większą skalę i oficjalnie przejść na kolejny poziom razem.</p>
           </div>
         </div>
       </div>
@@ -1086,7 +1104,7 @@ footer {
           <div class="info-card">
             <div class="info-label">Przyjęcie</div>
             <div class="info-title">Wesele</div>
-            <div class="info-date">5 września 2026 — od godz. 16:00</div>
+            <div class="info-date">5 września 2026 — od godz. 16:30</div>
             <div class="info-address">
               Skansen Bicz Family &amp; SPA — Sala Diamentowa<br>
               Bicz
@@ -1096,7 +1114,7 @@ footer {
 
           <div class="info-card">
             <div class="info-label">Dzień drugi</div>
-            <div class="info-title">Poprawiny</div>
+            <div class="info-title">Poweselny brunch</div>
             <div class="info-date">6 września 2026 — 12:00–16:00</div>
             <div class="info-address">
               Skansen Bicz — Sala Stodoła<br>
@@ -1127,124 +1145,44 @@ footer {
 
     <div class="section-separator"><span></span></div>
 
-    <!-- RSVP -->
-    <section id="rsvp">
-      <div class="container">
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2></h2>
+      <p>Strona jest dodatkiem do tradycyjnego zaproszenia, które postaramy się doręczyć jak najprędzej.</p>
+      <p>Jeżeli jednak już na tym etapie pojawią się pytania, to prosimy o kontakt.</p>
+      <p>Agata: 607 687 346<br>Daniel: 514 297 158</p>
+    </div>
+
+    <div class="rsvp-wrapper reveal">
+      <div class="rsvp-header">
+        <h2> </h2>
+      </div>
+
+      <!-- Placeholder -->
+      <div id="rsvpPlaceholder" class="rsvp-placeholder">
+
+        <div class="rsvp-icon">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8a7f73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+           <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+           <polyline points="2,6 12,13 22,6"></polyline>
+          </svg>
+        </div>
+        <div class="container">
         <div class="section-header reveal">
-          <h2>Daj nam znać, że będziesz</h2>
-          <p>Potwierdź swoją obecność, to bardzo nam pomoże</p>
-        </div>
-
-        <div class="rsvp-wrapper reveal">
-          <div class="rsvp-header">
-            <h2>Potwierdzenie obecności</h2>
-            <p>Będzie nam ogromnie miło, jeśli potwierdzicie swoją obecność do <strong>01.08.2026.</strong></p>
-          </div>
-
-<form action="https://formsubmit.co/daniel.domagala.93@gmail.com" method="POST" class="rsvp-form">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="https://chomikxd.github.io/weddingchomik/thankyou.html">
-
-  <!-- Imię i nazwisko -->
-  <div class="form-group">
-    <label for="name">Imię i nazwisko *</label>
-    <input type="text" id="name" name="Imię i nazwisko" required>
-  </div>
-
-  <!-- Obecność -->
-  <div class="form-group">
-    <label>Czy będziesz obecny na weselu? *</label>
-    <div class="radio-group">
-      <label class="radio-option">
-        <input type="radio" name="Obecność" value="Tak" required>
-        <span>Tak</span>
-      </label>
-      <label class="radio-option">
-        <input type="radio" name="Obecność" value="Nie">
-        <span>Nie</span>
-      </label>
-    </div>
-  </div>
-
-  <!-- Sekcja po zaznaczeniu "Tak" -->
-  <div id="rsvpExtra" class="rsvp-extra">
-
-    <!-- Osoba towarzysząca -->
-    <div class="form-group">
-      <label>Czy będziesz z osobą towarzyszącą?</label>
-      <div class="radio-group">
-        <label class="radio-option">
-          <input type="radio" name="Osoba towarzysząca" value="Tak">
-          <span>Tak</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="Osoba towarzysząca" value="Nie">
-          <span>Nie</span>
-        </label>
-      </div>
-    </div>
-
-    <!-- Imię osoby towarzyszącej -->
-    <div id="plusOneName" class="nested-extra">
-      <div class="form-group">
-        <label for="plus_one">Imię i nazwisko osoby towarzyszącej</label>
-        <input type="text" id="plus_one" name="Osoba towarzysząca — imię i nazwisko">
-      </div>
-    </div>
-
-    <!-- Nocleg -->
-    <div class="form-group">
-      <label>Czy potrzebujesz noclegu?</label>
-      <div class="radio-group">
-        <label class="radio-option">
-          <input type="radio" name="Nocleg" value="Tak">
-          <span>Tak</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="Nocleg" value="Nie">
-          <span>Nie</span>
-        </label>
-      </div>
-    </div>
-
-    <!-- Poprawiny -->
-    <div id="afterParty" class="nested-extra">
-      <div class="form-group">
-        <label>Czy zostajesz na poprawinach?</label>
-        <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Poprawiny" value="Tak">
-            <span>Tak</span>
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Poprawiny" value="Nie">
-            <span>Nie</span>
-          </label>
+          <h3>Formularz RSVP pojawi się wkrótce</h3>
+          <p>Po wysłaniu tradycyjnych zaproszeń udostępnimy tutaj możliwość potwierdzenia obecności.</p>
         </div>
       </div>
-    </div>
 
-  </div>
-
-  <!-- Dodatkowe informacje -->
-  <div class="form-group">
-    <label for="info">Dodatkowe informacje<br>Alergie, preferencje żywieniowe, uwagi</label>
-    <textarea id="info" name="Uwagi"></textarea>
-  </div>
-
-  <button type="submit" class="btn-submit">Potwierdzam obecność</button>
-</form>
-
-
-
-          <div class="rsvp-footer">
-            Agata i Daniel — 5 września 2026<br>
-            Do zobaczenia na naszym ślubie
-          </div>
-        </div>
+      <div class="rsvp-footer">
+        Agata i Daniel — 5 września 2026<br>
+        Do zobaczenia na naszym ślubie
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
   </main>
 
@@ -1336,7 +1274,6 @@ obecnoscRadios.forEach(radio => {
     } else {
       rsvpExtra.style.display = "none";
       plusOneName.style.display = "none";
-      afterParty.style.display = "none";
     }
   });
 });

@@ -1134,6 +1134,77 @@ footer {
 }
 
 
+.gallery img {
+  transition: transform 0.45s cubic-bezier(.25,.1,.25,1), 
+              filter 0.45s ease,
+              box-shadow 0.45s ease;
+  cursor: zoom-in;
+  border-radius: 12px;
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.06) contrast(1.03);
+  box-shadow: 0 18px 38px rgba(0,0,0,0.22);
+}
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 9999;
+}
+
+#lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 14px;
+  box-shadow: 0 22px 48px rgba(0,0,0,0.35);
+  animation: zoomIn 0.35s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lb-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  font-size: 42px;
+  padding: 12px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  user-select: none;
+}
+
+.lb-arrow:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.lb-prev {
+  left: 40px;
+}
+
+.lb-next {
+  right: 40px;
+}
 
 
 
@@ -1435,6 +1506,13 @@ footer {
 
   <footer></footer>
 
+<div id="lightbox">
+  <button class="lb-arrow lb-prev">&#10094;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lb-arrow lb-next">&#10095;</button>
+</div>
+
+
 </body>
 
 
@@ -1550,6 +1628,53 @@ obecnoscRadios.forEach(radio => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   });
+  
+document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('.collage-grid img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const prevBtn = document.querySelector('.lb-prev');
+  const nextBtn = document.querySelector('.lb-next');
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightboxImg.src = images[currentIndex].src;
+    lightbox.classList.add('active');
+  }
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+  });
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('active');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('active');
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+});
+
+
 </script>
 </body>
 </html>

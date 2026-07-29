@@ -113,28 +113,27 @@
 
     </div>
 
-    <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx11hutTjlQNnm4AbHnlhGQgHaLSZYSRIMu7CHYx8QMd-pK1pQO_YFzgFP0M4h1wHRG/exec";
+<script>
+    const WEB_APP_URL = "https://script.google.com/macros/library/d/1P4T6r0xES3sK1XwWSFglLjU3DmWqNfD9jRIcDyPptY7Jrc0WIguRxLox/5";
 
-        function openCamera() {
-            document.getElementById('cameraInput').click();
-        }
+    function openCamera() {
+        document.getElementById('cameraInput').click();
+    }
 
-        async function handlePhoto(file) {
-            if (!file) return;
+    async function handlePhoto(file) {
+        if (!file) return;
 
-            const formData = new FormData();
-            formData.append("file", file, file.name);
+        const formData = new FormData();
+        formData.append("file", file);
 
-            await fetch(WEB_APP_URL, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            });
+        const res = await fetch(WEB_APP_URL, {
+            method: "POST",
+            body: formData
+        });
 
-            alert("Zdjęcie zostało wysłane!");
-        }
-    </script>
+        alert("Zdjęcie zostało wysłane!");
+    }
+</script>
 
 </body>
 </html>

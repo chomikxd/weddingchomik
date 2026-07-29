@@ -83,21 +83,18 @@
 
     <div class="container">
 
-        <!-- Nowoczesna ikonka aparatu -->
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
         </svg>
 
         <h1>Wasze zdjęcia z naszego dnia</h1>
-        <p class="subtitle">Zróbcie zdjęcie, uchwyćcie chwilę i dodajcie ją do naszej galerii.</p>
+        <p class="subtitle">Zróbcie zdjęcie, uchwyćcie chwilę i dodajcie je do naszej historii.</p>
 
         <div class="divider"></div>
 
-        <!-- Przycisk otwierający aparat -->
         <button class="btn" onclick="openCamera()">Zrób zdjęcie</button>
 
-        <!-- Ukryty input wymuszający aparat -->
         <input
             id="cameraInput"
             type="file"
@@ -109,7 +106,6 @@
 
         <p class="thanks">Dziękujemy, że tworzycie z nami tę historię.</p>
 
-        <!-- Mała ikonka aparatu -->
         <svg class="thanks-icon" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
@@ -118,18 +114,28 @@
     </div>
 
     <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxoj2v5PuCyDiB90psJ1oSy-8XhWYkMdhdNx2LPCVK254m0sbLmJC3j8oMT_YrwRsmQ/exec";
+
         function openCamera() {
-            const input = document.getElementById('cameraInput');
-            input.click();
+            document.getElementById('cameraInput').click();
         }
 
         async function handlePhoto(file) {
             if (!file) return;
 
-            // TODO: tutaj podpinamy backend (UploadThing / inne)
-            // Na razie tylko info, że działa:
-            alert("Zdjęcie zostało zrobione. Tu podpinamy wysyłkę na serwer / Google Drive.");
-            console.log("Plik:", file);
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const res = await fetch(WEB_APP_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            if (res.ok) {
+                alert("Zdjęcie zostało wysłane do Google Drive!");
+            } else {
+                alert("Błąd wysyłania zdjęcia.");
+            }
         }
     </script>
 

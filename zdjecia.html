@@ -56,6 +56,8 @@
             border-radius: 6px;
             text-decoration: none;
             transition: 0.25s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -92,7 +94,18 @@
 
         <div class="divider"></div>
 
-        <a class="btn" href="https://forms.gle/sns3vk4qPUzi49VD8" target="_blank">Zrób zdjęcie</a>
+        <!-- Przycisk otwierający aparat -->
+        <button class="btn" onclick="openCamera()">Zrób zdjęcie</button>
+
+        <!-- Ukryty input wymuszający aparat -->
+        <input
+            id="cameraInput"
+            type="file"
+            accept="image/*"
+            capture="environment"
+            style="display:none;"
+            onchange="handlePhoto(this.files[0])"
+        />
 
         <p class="thanks">Dziękujemy, że tworzycie z nami tę historię.</p>
 
@@ -103,6 +116,22 @@
         </svg>
 
     </div>
+
+    <script>
+        function openCamera() {
+            const input = document.getElementById('cameraInput');
+            input.click();
+        }
+
+        async function handlePhoto(file) {
+            if (!file) return;
+
+            // TODO: tutaj podpinamy backend (UploadThing / inne)
+            // Na razie tylko info, że działa:
+            alert("Zdjęcie zostało zrobione. Tu podpinamy wysyłkę na serwer / Google Drive.");
+            console.log("Plik:", file);
+        }
+    </script>
 
 </body>
 </html>

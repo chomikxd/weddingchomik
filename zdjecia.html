@@ -17,7 +17,7 @@
         .container {
             max-width: 760px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
         }
 
@@ -29,14 +29,14 @@
         }
 
         h1 {
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         p.subtitle {
-            font-size: 20px;
-            margin-bottom: 35px;
+            font-size: 19px;
+            margin-bottom: 32px;
             opacity: 0.8;
         }
 
@@ -44,16 +44,16 @@
             width: 70px;
             height: 1px;
             background: #c8c1b5;
-            margin: 35px auto;
+            margin: 30px auto;
         }
 
         .btn {
             display: inline-block;
-            padding: 14px 34px;
+            padding: 16px 36px;
             background: #e5dfd4;
             color: #3a3a3a;
-            font-size: 20px;
-            border-radius: 6px;
+            font-size: 21px;
+            border-radius: 10px;
             text-decoration: none;
             transition: 0.25s;
             border: none;
@@ -64,17 +64,72 @@
             background: #f0eae2;
         }
 
+        .btn:disabled {
+            background: #d6d2cb;
+            cursor: not-allowed;
+        }
+
         .thanks {
-            margin-top: 45px;
+            margin-top: 40px;
             font-size: 18px;
             opacity: 0.85;
         }
 
-        .thanks-icon {
-            width: 40px;
-            height: 40px;
-            margin: 15px auto 0 auto;
-            opacity: 0.75;
+        /* Status box */
+        #statusBox {
+            position: fixed;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3a3a3a;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 999;
+        }
+
+        /* Spinner */
+        #spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            margin: -25px 0 0 -25px;
+            border: 6px solid #e5dfd4;
+            border-top: 6px solid #3a3a3a;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            display: none;
+            z-index: 1000;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Miniatura */
+        #previewBox {
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #previewImg {
+            width: 90%;
+            max-width: 380px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -93,28 +148,59 @@
 
         <div class="divider"></div>
 
-        <button class="btn" onclick="openCamera()">Zrób zdjęcie</button>
+        <button class="btn" id="uploadBtn" onclick="openCamera()">Dodaj zdjęcie</button>
 
         <input
             id="cameraInput"
             type="file"
             accept="image/*"
-            capture="environment"
             style="display:none;"
             onchange="handlePhoto(this.files[0])"
         />
 
-        <p class="thanks">Dziękujemy, że tworzycie z nami tę historię.</p>
+        <!-- Miniatura -->
+        <div id="previewBox">
+            <img id="previewImg" src="" alt="Podgląd zdjęcia">
+        </div>
 
-        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z"/>
-            <circle cx="12" cy="13" r="4"/>
-        </svg>
+        <p class="thanks">Dziękujemy, że tworzycie z nami tę historię.</p>
 
     </div>
 
+    <div id="statusBox"></div>
+    <div id="spinner"></div>
+
 <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby3mYvWX4IQK4kZc27TJCAzPqKL0IpTyaTo9j6MHWfYrEPS3OKfYc7aujXghxRu5vZFSQ/exec";
+
+    if (localStorage.getItem("photoUploaded") === "true") {
+        const btn = document.getElementById("uploadBtn");
+        btn.disabled = true;
+        btn.innerText = "Zdjęcie już wysłane ❤️";
+    }
+
+    function showStatus(msg) {
+        const box = document.getElementById("statusBox");
+        box.innerText = msg;
+        box.style.opacity = "1";
+        setTimeout(() => box.style.opacity = "0", 3000);
+    }
+
+    function showSpinner() {
+        document.getElementById("spinner").style.display = "block";
+    }
+
+    function hideSpinner() {
+        document.getElementById("spinner").style.display = "none";
+    }
+
+    function showPreview(base64) {
+        const box = document.getElementById("previewBox");
+        const img = document.getElementById("previewImg");
+
+        img.src = "data:image/jpeg;base64," + base64;
+        box.style.display = "block";
+    }
 
     function openCamera() {
         document.getElementById('cameraInput').click();
@@ -123,12 +209,17 @@
     async function handlePhoto(file) {
         if (!file) return;
 
+        showSpinner();
+        showStatus("Wysyłanie zdjęcia…");
+
         const reader = new FileReader();
 
         reader.onload = async () => {
             const result = reader.result;
             const [meta, base64] = result.split(',');
             const mimeType = meta.match(/data:(.*);base64/)[1];
+
+            showPreview(base64);
 
             const payload = {
                 image: base64,
@@ -138,18 +229,33 @@
             try {
                 const res = await fetch(WEB_APP_URL, {
                     method: "POST",
-                    body: JSON.stringify(payload)   // ← bez nagłówków!
+                    body: JSON.stringify(payload)
                 });
 
                 const text = await res.text();
-                alert("Serwer odpowiedział: " + text);
+
+                hideSpinner();
+
+                if (text.includes("OK")) {
+                    showStatus("Zdjęcie zapisane! Dziękujemy ❤️");
+                    localStorage.setItem("photoUploaded", "true");
+
+                    const btn = document.getElementById("uploadBtn");
+                    btn.disabled = true;
+                    btn.innerText = "Zdjęcie już wysłane ❤️";
+                } else {
+                    showStatus("Ups… coś poszło nie tak 😢");
+                }
+
             } catch (err) {
-                alert("Błąd wysyłania: " + err);
+                hideSpinner();
+                showStatus("Błąd wysyłania 😢");
             }
         };
 
         reader.readAsDataURL(file);
     }
 </script>
+
 </body>
 </html>

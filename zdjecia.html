@@ -115,7 +115,6 @@
 
 <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG-BEIy_ZG4ojLsP3B8yoAffv-oETCdhrD54jg8E_oGRr6octrdGz3JBPdyZ52dAidew/exec";
-
     function openCamera() {
         document.getElementById('cameraInput').click();
     }
@@ -124,7 +123,8 @@
         if (!file) return;
 
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("upload", file);
+
 
         const res = await fetch(WEB_APP_URL, {
             method: "POST",

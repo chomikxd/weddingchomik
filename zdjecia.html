@@ -204,25 +204,8 @@
             <button class="btn" onclick="openGallery()">Wybierz z galerii</button>
         </div>
 
-        <!-- KAMERA -->
-        <input
-            id="cameraInput"
-            type="file"
-            accept="image/*"
-            capture="environment"
-            style="display:none;"
-            onchange="handlePhoto(this.files[0])"
-        />
-
-        <!-- GALERIA — TYLKO ZDJĘCIA -->
-        <input
-            id="galleryInput"
-            type="file"
-            accept="image/*"
-            capture=""
-            style="display:none;"
-            onchange="handlePhoto(this.files[0])"
-        />
+        <input id="cameraInput" type="file" accept="image/*" capture="environment" style="display:none;" onchange="handlePhoto(this.files[0])" />
+        <input id="galleryInput" type="file" accept="image/*" style="display:none;" onchange="handlePhoto(this.files[0])" />
 
         <div id="previewBox">
             <img id="previewImg" src="" alt="Podgląd zdjęcia">

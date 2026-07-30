@@ -14,51 +14,88 @@
             color: #3a3a3a;
         }
 
-        .container {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 50px 20px;
-            text-align: center;
+        .page-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px;
         }
 
-        .icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 25px auto;
-            opacity: 0.85;
+        .panel {
+            max-width: 420px;
+            width: 100%;
+            background: #fdfaf5;
+            border-radius: 18px;
+            box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+            padding: 28px 22px 26px 22px;
+            text-align: center;
+            border: 1px solid rgba(200,193,181,0.45);
+        }
+
+        /* --- NAGŁÓWEK W STYLU akiedyslub.pl --- */
+        .wedding-header {
+            margin-bottom: 22px;
+        }
+
+        .names {
+            font-size: 34px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .date {
+            font-size: 16px;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        .panel-icon {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 18px auto;
+            opacity: 0.9;
         }
 
         h1 {
-            font-size: 38px;
+            font-size: 26px;
             font-weight: 500;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         p.subtitle {
-            font-size: 19px;
-            margin-bottom: 32px;
-            opacity: 0.8;
+            font-size: 17px;
+            margin-bottom: 22px;
+            opacity: 0.85;
         }
 
         .divider {
-            width: 70px;
+            width: 60px;
             height: 1px;
             background: #c8c1b5;
-            margin: 30px auto;
+            margin: 18px auto 22px auto;
+        }
+
+        .btn-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 18px;
         }
 
         .btn {
-            display: inline-block;
-            padding: 16px 26px;
+            flex: 1;
+            padding: 12px 10px;
             background: #e5dfd4;
             color: #3a3a3a;
-            font-size: 19px;
-            border-radius: 10px;
+            font-size: 16px;
+            border-radius: 999px;
             text-decoration: none;
             transition: 0.25s;
             border: none;
             cursor: pointer;
-            min-width: 140px;
+            white-space: nowrap;
         }
 
         .btn:hover {
@@ -70,69 +107,25 @@
             cursor: not-allowed;
         }
 
-        .btn-row {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
         .thanks {
-            margin-top: 40px;
-            font-size: 18px;
+            margin-top: 14px;
+            font-size: 15px;
             opacity: 0.85;
-        }
-
-        /* Status box */
-        #statusBox {
-            position: fixed;
-            bottom: 35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #3a3a3a;
-            color: white;
-            padding: 14px 22px;
-            border-radius: 10px;
-            font-size: 18px;
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 999;
-        }
-
-        /* Spinner */
-        #spinner {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 50px;
-            height: 50px;
-            margin: -25px 0 0 -25px;
-            border: 6px solid #e5dfd4;
-            border-top: 6px solid #3a3a3a;
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-            display: none;
-            z-index: 1000;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* Miniatura */
         #previewBox {
-            margin-top: 30px;
+            margin-top: 16px;
             display: none;
             animation: fadeIn 0.5s ease;
         }
 
         #previewImg {
-            width: 90%;
-            max-width: 380px;
-            border-radius: 16px;
+            width: 100%;
+            max-width: 320px;
+            border-radius: 14px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
         @keyframes fadeIn {
@@ -145,14 +138,58 @@
             50% { transform: scale(1.03); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
             100% { transform: scale(1); box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
         }
+
+        /* Status box */
+        #statusBox {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3a3a3a;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-size: 15px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 999;
+        }
+
+        /* Spinner */
+        #spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 46px;
+            height: 46px;
+            margin: -23px 0 0 -23px;
+            border: 5px solid #e5dfd4;
+            border-top: 5px solid #3a3a3a;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            display: none;
+            z-index: 1000;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="page-wrap">
+    <div class="panel">
 
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- NAGŁÓWEK W STYLU akiedyslub.pl -->
+        <div class="wedding-header">
+            <div class="names">Agata i Daniel</div>
+            <div class="date">5 WRZEŚNIA 2026</div>
+        </div>
+
+        <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
         </svg>
@@ -167,6 +204,7 @@
             <button class="btn" onclick="openGallery()">Wybierz z galerii</button>
         </div>
 
+        <!-- KAMERA -->
         <input
             id="cameraInput"
             type="file"
@@ -176,15 +214,16 @@
             onchange="handlePhoto(this.files[0])"
         />
 
+        <!-- GALERIA — TYLKO ZDJĘCIA -->
         <input
             id="galleryInput"
             type="file"
             accept="image/*"
+            capture=""
             style="display:none;"
             onchange="handlePhoto(this.files[0])"
         />
 
-        <!-- Miniatura -->
         <div id="previewBox">
             <img id="previewImg" src="" alt="Podgląd zdjęcia">
         </div>
@@ -192,9 +231,10 @@
         <p class="thanks">Dziękujemy, że tworzycie z nami tę historię.</p>
 
     </div>
+</div>
 
-    <div id="statusBox"></div>
-    <div id="spinner"></div>
+<div id="statusBox"></div>
+<div id="spinner"></div>
 
 <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby3mYvWX4IQK4kZc27TJCAzPqKL0IpTyaTo9j6MHWfYrEPS3OKfYc7aujXghxRu5vZFSQ/exec";
@@ -235,8 +275,6 @@
 
         showSpinner();
         showStatus("Wysyłanie zdjęcia…");
-
-        // blokada przycisków na czas wysyłania
         document.querySelectorAll(".btn").forEach(btn => btn.disabled = true);
 
         const reader = new FileReader();
@@ -265,10 +303,7 @@
 
                 if (text.includes("OK")) {
                     showStatus("Zdjęcie zapisane! Dziękujemy ❤️");
-
-                    // animacja sukcesu
                     document.getElementById("previewImg").style.animation = "successPulse 0.8s ease";
-
                 } else {
                     showStatus("Ups… coś poszło nie tak 😢");
                 }
@@ -278,7 +313,6 @@
                 showStatus("Błąd wysyłania 😢");
             }
 
-            // odblokowanie przycisków po wysłaniu
             document.querySelectorAll(".btn").forEach(btn => btn.disabled = false);
         };
 

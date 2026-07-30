@@ -126,10 +126,8 @@
         const reader = new FileReader();
 
         reader.onload = async () => {
-            // reader.result = "data:image/jpeg;base64,...."
             const result = reader.result;
             const [meta, base64] = result.split(',');
-
             const mimeType = meta.match(/data:(.*);base64/)[1];
 
             const payload = {
@@ -140,10 +138,7 @@
             try {
                 const res = await fetch(WEB_APP_URL, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload)   // ← bez nagłówków!
                 });
 
                 const text = await res.text();
